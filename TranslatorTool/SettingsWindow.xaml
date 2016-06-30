@@ -1,0 +1,38 @@
+﻿<Window x:Class="TranslatorTool.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SettingsWindow" Height="350" Width="300" Loaded="Window_Loaded" PreviewKeyDown="GetKey">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="4">
+            <Button Content="Отмена" Height="30" HorizontalAlignment="Left" Margin="5" Padding="5" Click="Cancel" FontFamily="Centure Gothic" VerticalAlignment="Bottom"></Button>
+            <Button Content="Сохранить" Height="30" HorizontalAlignment="Right" Margin="5" Padding="5" Click="Save" FontFamily="Century Gothic" VerticalAlignment="Bottom"></Button>
+
+        </DockPanel>
+        <CheckBox Grid.Row="3" Name="autosave" Margin="5 5 0 5" VerticalAlignment="Top" Checked="autosave_Checked" Unchecked="autosave_Unchecked"></CheckBox>
+        <Label Grid.Row="3" Content="Автосохранение" Margin="25 5 0 5" VerticalAlignment="Top"></Label>
+        <Label Grid.Row="3" Content="Папка для автосохранения: " Margin="5 25 0 5" VerticalAlignment="Top"></Label>
+        <TextBox Name="Pathtosave" Grid.Row="3" Margin="170 25 45 5" VerticalAlignment="Top" IsReadOnly="True"/>
+        <Button Grid.Row="3"  Margin="250 25 5 5" VerticalAlignment="Top" Height="20" Content="..." Click="Button_Click"></Button>
+        <Label Name="autointLabel" Grid.Row="3" Content="Интервал времени: 1 мин" Margin="5 50 0 5" VerticalAlignment="Top"></Label>
+        <Slider Name="autoint" Grid.Row="3" Margin="170 50 5 5"  VerticalAlignment="Top" Minimum="1" ValueChanged="autoint_ValueChanged" SmallChange="1"></Slider>
+        <Label Grid.Row="0" Content="Быстрая клавиша перевода:" Margin="0,10" FontFamily="Century Gothic"/>
+        <ToggleButton Grid.Row="0" Name="KeyCode" Content="Изменить" Height="30" HorizontalAlignment="Left" Margin="200,10,0,10" Background="White" BorderBrush="#FF086AF7" FontFamily="Century Gothic" Padding="5"/>
+        
+      
+            <Label Grid.Row="1" Name="lbl1" Content="Включить подказки в статусной строке" Margin="0,10" FontFamily="Century Gothic"/>
+            <CheckBox Grid.Row="1" Name="IncludeTips"  Height="30" HorizontalAlignment="Left" Margin="240,10,0,10" Background="White" BorderBrush="#FF086AF7" FontFamily="Century Gothic" Padding="5" Style="{DynamicResource CheckBoxSwitcher}" IsChecked="True" Checked="IncludeTips_Checked"/>
+
+
+        <Label Grid.Row="2" Content="Добавить новый язык в Базу Данных:" FontFamily="Century Gothic" Margin="0,0,5,5"></Label>
+        <TextBox Name="NewLanguage" Margin="5,30,10,10" Height="25" Grid.Row="2"  FontFamily="Century Gothic" Width="180" HorizontalAlignment="left"></TextBox>
+            <Button Name="AddL" Grid.Row="2"  Content="Добавить" Height="30" HorizontalAlignment="Left" Margin="200,30,0,10" Background="White" BorderBrush="#FF086AF7" FontFamily="Century Gothic" Padding="5" Click="AddNewLanguage"/>
+      
+    </Grid>
+</Window>

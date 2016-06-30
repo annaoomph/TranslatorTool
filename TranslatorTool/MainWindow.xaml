@@ -1,0 +1,306 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"   
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"  x:Class="TranslatorTool.MainWindow"    
+        Title="MainWindow" Height="550" Width="600" MinWidth="600" MinHeight="550" x:Name="window" FontFamily="Century Gothic">    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid x:Name="ISearch" Visibility="Hidden">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Name="wait"  Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22"  >
+                    <Label.Foreground>
+                        <SolidColorBrush Color="{DynamicResource MainIconColor}"/>
+                    </Label.Foreground>
+                </Label>
+                <Grid Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>  
+                    <TextBox  Text="Поиск..." MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave"  Name="search" Grid.Column="0" HorizontalAlignment="Stretch" Margin="10,10,0,0" Height="40" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" BorderThickness="1" FontSize="16" FontFamily="Century Gothic" PreviewKeyDown="search_PreviewKeyDown" PreviewMouseUp="search_PreviewMouseUp" />
+                    <Button Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="40"  Height="40" Grid.ColumnSpan="2" Margin="0" Click="ISearchButton" Background="#FF0046FF">
+                        <ContentControl Template="{StaticResource SearchIcon}" Background="#FF0046FF" Height="40" Width="40" Padding="0" Margin="0" />
+                    </Button>
+                </Grid>
+                <Button MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" Name="SettingsGo" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2" Width="50" Height="50" BorderBrush="#00EFF0F2" BorderThickness="0" Background="#00EFF0F2" Margin="20,10,10,10"  Click="OpenSettings" >
+                    <ContentControl Template="{StaticResource SettingsIcon}" />
+                </Button>
+                <ListBox MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave"  Name="SearchResults" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="0" Margin="10,0,0,10" FontSize="16" FontFamily="Century Gothic" SelectionChanged="SearchResults_SelectionChanged" >
+                    <ListBox.OpacityMask>
+                        <LinearGradientBrush StartPoint="0,0.6" EndPoint="0,1">
+                            <GradientStop Color="Black" Offset="0"/>
+                            <GradientStop Color="#4CFFFFFF" Offset="0.5"/>
+                        </LinearGradientBrush>
+                    </ListBox.OpacityMask>
+                </ListBox>
+                <StackPanel Orientation="Horizontal" Margin="0,20,10,10" Grid.Row="2" Grid.Column="0">
+                    <Button MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" Name="btn1" Height="48" Width="48" Click="GoHomeButton" Margin="5,5,5,0" >
+                        <ContentControl Width="44" Height="44" Template="{StaticResource HomeIcon}" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+            
+            
+            <Grid x:Name="Import" Visibility="Hidden">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" Name="SplitTheText" Content="Разбить текст" Grid.Row="0" VerticalAlignment="Bottom" Margin="60,10,10,10"></Label>
+                <CheckBox Name="splitter" Grid.Row="0" VerticalAlignment="Bottom" Margin="20,10,10,10" HorizontalAlignment="Left" Style="{DynamicResource CheckBoxSwitcher}"></CheckBox>
+                <RichTextBox Name="richTextBox1" Grid.Row="0" HorizontalAlignment="Stretch" Margin="20,20,20,50" VerticalAlignment="Stretch" Block.LineHeight="6" FontFamily="Century Gothic" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <FlowDocument>
+                        <Paragraph Name="MainText">
+                            <Run Text="Some text for translation "/>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+                <StackPanel Grid.Row="1">
+                    <DockPanel>
+                        <Button Name="GoHome2" MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="20,10,10,20" MinHeight="48" MinWidth="48" Click="GoHomeButton" >
+                            <ContentControl Width="44" Height="44" Template="{StaticResource HomeIcon}" />
+                        </Button>
+                        <Button Name="OpenFile" MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" HorizontalAlignment="Left" Margin="10,10,10,20" Height="48" Width="48" BorderThickness="1" Click="OpenFile_Click" >
+                            <ContentControl Width="44" Height="44" Template="{StaticResource OpenFileIcon}"  />
+                        </Button>
+                        <Button HorizontalAlignment="Right" Width="38" Height="38" Margin="10,10,20,20" VerticalAlignment="Bottom" Click="ImportNext"  >
+                            <ContentControl Width="38" Height="38" Template="{StaticResource NextIcon}" />
+                        </Button>
+                    </DockPanel>
+                </StackPanel>
+            </Grid>
+            
+            
+            <Grid x:Name="Translation" Visibility="Hidden"      >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="11*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0" Margin="10,0,10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="10*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Оригинал" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center"></Label>
+                    <Label Content="Перевод текста" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center"></Label>
+                    <ListBox MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" Name="EnBox" Grid.Column="0" HorizontalAlignment="Stretch" MinWidth="100" MinHeight="100" VerticalAlignment="Stretch" Margin="0,20,0,0" SelectionMode="Extended" SelectionChanged="EnBox_SelectionChanged" FontFamily="Century Gothic" PreviewKeyDown="EnBox_PreviewKeyDown"  />
+                    <ListBox MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" Name="RuBox" Grid.Column="1" HorizontalAlignment="Stretch" MinWidth="100" MinHeight="100" VerticalAlignment="Stretch" Margin="0,20,0,0" SelectionMode="Multiple" SelectionChanged="RuBox_SelectionChanged" FontFamily="Century Gothic" PreviewKeyDown="RuBox_PreviewKeyDown" />
+                </Grid>
+                <Slider Name="sliderselection" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Stretch" Margin="0,20,0,0" Orientation="Vertical" RenderTransformOrigin="0.409,3" Interval="1"  ValueChanged="sliderselection_ValueChanged" IsSelectionRangeEnabled="True" FlowDirection="RightToLeft" IsDirectionReversed="True" Visibility="Hidden"/>
+                <TextBox MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" Name="searchMultitran" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Margin="30,20,10,10" Text="Поиск" VerticalAlignment="Top" PreviewKeyDown="S_PreviewKeyDown" Height="20"  GotFocus="searchM_GotFocus"/>
+                <WebBrowser MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" Name="multitran" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" MinWidth="100" MinHeight="100" Margin="25,50,10,10" VerticalAlignment="Stretch" Cursor="None"/>
+                <TextBox MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" Name="commentForm"  Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" Height="30" MinWidth="100" Margin="10,10,10,5" VerticalAlignment="Top" Style="{DynamicResource new_textbox}" PreviewKeyDown="commentForm_PreviewKeyDown"  />
+                <Button  Name="GoHome1" Grid.Row="2" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Bottom" Height="48" Width="48" Click="GoHomeButton"  MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave">
+                    <ContentControl Width="44" Height="44" Template="{StaticResource HomeIcon}" />
+                </Button>
+                <Button Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Width="38" Height="38" Margin="0,10,10,10"  VerticalAlignment="Bottom" Click="PreviewFile" >
+                    <ContentControl Width="38" Height="38" Template="{StaticResource NextIcon}" />
+                </Button>
+                <Grid Grid.Column="1" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2.5*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <ToolBar  VerticalAlignment="Center" Grid.Column="0" Height="auto" Width="auto" Margin="5,5,10,5" Grid.Row="0"  >
+                        <ToggleButton Name="Selection" MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave"  ToolBar.OverflowMode="Never" Height="28" Width="28"  Click="BeginSelect"  >
+                            <ContentControl Template="{StaticResource SelectionIcon}" />
+                        </ToggleButton>                       
+                        <Button Name="CopyText" MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" ToolBar.OverflowMode="Never" Height="28" Width="28"  VerticalAlignment="Stretch" Click="CopyItems"  >
+                            <ContentControl Template="{StaticResource CopyIcon}" />
+                        </Button>
+                        <Button Name="PasteText" MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" ToolBar.OverflowMode="Never" Height="28" Width="28"  VerticalAlignment="Stretch" Click="PasteItems"  >
+                            <ContentControl Template="{StaticResource PasteIcon}" />
+                        </Button>
+                        <Button Name="Delete" MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" ToolBar.OverflowMode="Never" Height="28" Width="28"  VerticalAlignment="Stretch" Click="DeleteItem"  >
+                            <ContentControl Height="18" Width="18" Template="{StaticResource DeleteIcon}" />
+                        </Button>
+                    </ToolBar>
+                </Grid>
+            </Grid>
+            
+            
+            <Grid x:Name="ListTranslate">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Ваши переводы" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"></Label>
+                <ListBox Name="ListOfTranslations" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,30,10,10" SelectionChanged="ListOfTranslations_SelectionChanged" >                    
+                </ListBox>
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,10,5,10" Grid.Row="1" Grid.Column="1"  Width="220">
+                    <Button x:Name="btn" MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" Margin="0" Height="40" VerticalAlignment="Stretch"   Width="40"  Click="NewFile"  >
+                        <ContentControl   Width="30" Height="30" Template="{StaticResource AddIcon}" RenderTransformOrigin="0.816,0.579" />
+                    </Button>
+                    <Button Name="EditFile" Margin="5,0,5,0" Height="40" VerticalAlignment="Stretch"   Width="40" Click="EditFileBD" MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave"  >
+                        <ContentControl   Width="30" Height="30" Template="{StaticResource ImportIcon}" RenderTransformOrigin="0.816,0.579" />
+                    </Button>
+                    <Button Name="GoToSearch" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,0,5,0"  Height="40" Width="40" Click="GoToSearchPage" MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" >
+                        <ContentControl Width="30" Height="30" Template="{StaticResource OpenSearchIcon}" />
+                    </Button>
+                    <Button x:Name="DeleteFromBD" MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" Margin="0,0,5,0" Height="40" VerticalAlignment="Stretch"   Width="40" Click="DeleteFromBD_Click"   >
+                        <ContentControl   Width="30" Height="30" Template="{StaticResource DeleteIcon}" RenderTransformOrigin="0.816,0.579" />
+                    </Button>
+                    <Button Name="SettingsPanel" MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" Width="40" Height="40" BorderBrush="#00EFF0F2" BorderThickness="0" Background="#00EFF0F2" Click="OpenSettings"  >
+                        <ContentControl Template="{StaticResource SettingsIcon}" />
+                    </Button>
+                </StackPanel>
+                <Label Name="sorts" Content="Сортировка:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" Padding="5,5,0,15">
+                </Label>
+                <ToggleButton Name="sortauthor" Content="автор"  HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Margin="95,0,0,10" Click="ToggleButton_Checked" Background="{x:Null}">
+                    <ToggleButton.BorderBrush>
+                        <SolidColorBrush Color="{DynamicResource MainIconColor}"/>
+                    </ToggleButton.BorderBrush>
+                </ToggleButton>
+                <ToggleButton Name="sortname" Content="название"  HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Margin="138,0,0,5" Click="sortname_Checked" Background="{x:Null}">
+                    <ToggleButton.BorderBrush>
+                        <SolidColorBrush Color="{DynamicResource MainIconColor}"/>
+                    </ToggleButton.BorderBrush>
+                </ToggleButton>
+                <ToggleButton Name="sortdata" Content="дата"  HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Margin="205,0,0,5" Click="sortdata_Checked" Background="{x:Null}">
+                    <ToggleButton.BorderBrush>
+                        <SolidColorBrush Color="{DynamicResource MainIconColor}"/>
+                    </ToggleButton.BorderBrush>
+                </ToggleButton>
+                <Button Name="reverse" Content="^" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Padding="5" Margin="242,0,0,5" Click="ReverseArray" Background="{x:Null}"/>
+                <Label Name="amount" Content="Файлов: 0" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Margin="0,0,10,5"></Label>
+                <TextBox Name="InfoBox" Margin="10,30,10,10" Grid.Row="1" Grid.Column="0" Text="Информация о файле:" Height="auto"  IsReadOnly="True" Style="{DynamicResource new_textbox}" ScrollViewer.CanContentScroll="True" VerticalScrollBarVisibility="Auto" AllowDrop="False" FontFamily="Century Gothic" VerticalAlignment="Top" Padding="5,5,5,5"/>
+                <Grid Grid.Row="0" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBox Name ="searchDB" Grid.Row="1" HorizontalAlignment="Stretch" Margin="10 0 0 0" Text="Поиск" VerticalAlignment="Top" PreviewKeyDown="SearchWord" Height="20"  GotFocus="searchDB_GotFocus" MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave"/>
+                    <CheckBox Name="searchInText" Grid.Row="1"  HorizontalAlignment="Stretch" Margin="10 20 0 0"></CheckBox>
+                    <Label Content="Искать в текстах песен" Grid.Row="1" HorizontalAlignment="Stretch" Margin="30 20 0 0"></Label>
+                    <Label Content="Фильтры" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    <Label Grid.Row="2" Content="От" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" />
+                    <Label Grid.Row="3" Content="До" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" />
+                    <DatePicker Name="DateFrom" Grid.Row="2" HorizontalAlignment="Stretch" Margin="30,10,10,10" Height="30" VerticalAlignment="Stretch" FontFamily="Century Gothic" Text="От" SelectedDateChanged="DatePicker_SelectedDateChanged" />
+                    <DatePicker Name="DateTo" Grid.Row="3" HorizontalAlignment="Stretch" Margin="30,10,10,10" Height="30" VerticalAlignment="Stretch" FontFamily="Century Gothic" Text="До" SelectedDateChanged="DatePicker_SelectedDateChanged_1" />
+                    <CheckBox x:Name="complete" Content="Завершенность" HorizontalAlignment="Center" Margin="10" Grid.Row="4" VerticalAlignment="Center" Style="{DynamicResource CheckBoxSwitcher}" IsThreeState="True" Click="change_Click" />
+                    <Label Grid.Row="5" Content="Язык" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    <ListBox Name="LanguagesList" Grid.Row="5" HorizontalAlignment="Stretch" Height="auto" Margin="10,20,10,10" VerticalAlignment="Stretch" SelectionMode="Multiple" SelectionChanged="LanguagesList_SelectionChanged" >
+                    </ListBox>
+                    <Button Name="Filter" Grid.Row="6" Content="Применить" HorizontalAlignment="Right" Height="40" Width="77"  Click="ApplyFilters" Margin="10"/>
+                    <Button Name="Reset" Grid.Row="6" Content="Сбросить" HorizontalAlignment="Left" Height="40" Width="77"   Click="ResetFilters" Margin="10"/>
+                </Grid>
+               
+            </Grid>
+            
+            
+            <Grid x:Name="Preview" Visibility="Hidden">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Name="author" Text="Автор" Grid.Row="0" Grid.Column="0" Margin="10" Height="30" Style="{DynamicResource new_textbox}" GotFocus="author_GotFocus"/>
+                    <TextBox Name="textname"  Text="Название" Grid.Row="0" Grid.Column="1" Margin="10" Height="30" Style="{DynamicResource new_textbox}" GotFocus="textname_GotFocus"/>
+                    <TextBox  Name="textnametr" Text="Перевод названия" Grid.Row="1" Grid.Column="1" Margin="10" Height="30" VerticalAlignment="top" Style="{DynamicResource new_textbox}" GotFocus="textnametr_GotFocus"/>
+                    <Grid Grid.Row="1" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <CheckBox  Name="completeIs" Grid.Row="1" VerticalAlignment="Top" Style="{DynamicResource CheckBoxSwitcher}" Margin="10,5,0,0" ></CheckBox>
+                        <Label Grid.Row="1" Content="Завершен" VerticalAlignment="Top" Margin="45,0,0,0"  ></Label>
+                        <ComboBox Grid.Row="0" Name="LanguagesCombo"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" />
+                    </Grid>
+                    <RichTextBox Name="Originaltext" Grid.Row="2" Grid.Column="0" Margin="10" VerticalScrollBarVisibility="Auto"></RichTextBox>
+                    <RichTextBox Name="Translatedtext" Grid.Row="2" Grid.Column="1" Margin="10" VerticalScrollBarVisibility="Auto"></RichTextBox>
+                </Grid>
+                <StackPanel Grid.Row="1">
+                    <DockPanel>
+                        <Button  Name="GoHome" VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="5,5,5,5" MinHeight="48" MinWidth="48" Click="GoHomeButton"  MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" >
+                            <ContentControl Width="44" Height="44" Template="{StaticResource HomeIcon}" />
+                        </Button>
+                        <Button Name="ExportBtn"  MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" HorizontalAlignment="Right" Width="38" Height="38" Margin="0,10,20,10" VerticalAlignment="Bottom" Click="Button_Click_Export"  >
+                            <ContentControl Width="38" Height="38" Template="{StaticResource CommentIcon}" />
+                        </Button>
+                        <Button Name="SaveBD"  MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" HorizontalAlignment="Right" Width="38" Height="38" Margin="0,10,20,10" VerticalAlignment="Bottom" Click="Button_Click_Save"  >
+                            <ContentControl Width="38" Height="38" Template="{StaticResource NextIcon}" />
+                        </Button>
+                    </DockPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        
+        <Label Name="Tip" Grid.Row="1" Content="Здесь будут отображаться подсказки. Просто наведите мышью на элемент." Margin="5,5,5,1" BorderThickness="0,1,0,0" Height="40">
+            <Label.BorderBrush>
+                <SolidColorBrush Color="{DynamicResource MainIconColor}"/>
+            </Label.BorderBrush>
+        </Label>
+    </Grid>
+    
+    
+    <Window.Resources>
+        <Style x:Key="flatTextBox" TargetType="{x:Type TextBox}">
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid Width="auto"  HorizontalAlignment="Stretch" Background="#00EFF0F2">
+                            <Rectangle  Stroke="#00EFF0F2" StrokeThickness="1"/>
+                            <TextBox HorizontalAlignment="Stretch" Width="auto" Margin="1" Text="{TemplateBinding Text}" BorderThickness="0" Background="Transparent"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="simpleTextBox" TargetType="{x:Type TextBox}">
+            <Setter Property="IsReadOnly" Value="False"/>
+        </Style>
+        <Style x:Key="ListLabel" TargetType="{x:Type Label}">
+            <Setter Property="BorderBrush" Value="{DynamicResource BordersBrush}"></Setter>
+            <Setter Property="BorderThickness" Value="0,0,0,1"></Setter>            
+            <Setter Property="FontFamily" Value="Century Gothic"></Setter>
+        </Style>
+        <SolidColorBrush x:Key="BordersBrush" Color="#FF70ABFF"/>
+        <SolidColorBrush x:Key="completeBrush" Color="#FF91BEFF"/>
+        <Color x:Key="Color1">#FE448FFF</Color>
+    </Window.Resources>
+</Window>

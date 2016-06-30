@@ -1,0 +1,709 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TranslatorTool</name>
+    </assembly>
+    <members>
+        <member name="T:TranslatorTool.InternetWorker">
+            <summary>
+            Класс, содержащий методы для работы с интернетом - получение необходимой информации,
+            поиск по интернету. Помогает получить страницу с результатом поиска на некоторых серверах.
+            </summary>
+        </member>
+        <member name="M:TranslatorTool.InternetWorker.Search(System.String)">
+            <summary>
+            Поиск слова в интернете на сайте musixmatch.com
+            Функция осуществляет поисковый запрос и загружает страницу, а затем отправляет результат на парсинг
+            </summary>
+            <param name="word">Искомое слово</param>
+            <returns>Словарь с парой ключ-значение, где ключ - название, значение - путь к файлу</returns>
+        </member>
+        <member name="M:TranslatorTool.InternetWorker.GetText(System.String)">
+            <summary>
+            Получение текста по ссылке. Парсинг результата
+            </summary>
+            <param name="path">Путь к файлу в интернете</param>
+            <returns>Список из строк, на которые разбит текст</returns>
+        </member>
+        <member name="M:TranslatorTool.InternetWorker.GetWord(System.String)">
+            <summary>
+            Получить перевод слова. Функция обращается к серверу multitran и парсит полученную страницу
+            </summary>
+            <param name="word">Искомое слово</param>
+            <returns>Часть html страницы с переводом</returns>
+        </member>
+        <member name="T:TranslatorTool.SettingsWindow">
+            <summary>
+            Логика взаимодействия для Окна настроек
+            </summary>
+            <summary>
+            SettingsWindow
+            </summary>
+        </member>
+        <member name="M:TranslatorTool.SettingsWindow.#ctor(System.Windows.Controls.Label@)">
+            <summary>
+            Конструктор окна настроек
+            </summary>
+            <param name="tip">строка подсказки</param>
+        </member>
+        <member name="M:TranslatorTool.SettingsWindow.Cancel(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Отмена
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.SettingsWindow.Save(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Сохранение настроек
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.SettingsWindow.Window_Loaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Инициализация
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.SettingsWindow.GetKey(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Получить горячую клавишу
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.SettingsWindow.IncludeTips_Checked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Изменение подписи CheckBox
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.SettingsWindow.AddNewLanguage(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Добавление нового языка
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.SettingsWindow.autoint_ValueChanged(System.Object,System.Windows.RoutedPropertyChangedEventArgs{System.Double})">
+            <summary>
+            Смена значения слайдера для интервала автосохранения
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.SettingsWindow.autosave_Checked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Включение/выключение автосохранения
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.SettingsWindow.Button_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Сменить папку автосохранения
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.SettingsWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:TranslatorTool.TextWorker">
+            <summary>
+            Класс, содержащий необходимые методы для любой работы с текстом и
+            текстовыми массивами. Сюда входит парсинг html-страниц, разбивка
+            текстов на массивы строк и проверки строк
+            </summary>
+        </member>
+        <member name="M:TranslatorTool.TextWorker.CheckStrings(System.String,System.String)">
+            <summary>
+            Проверка названия файла на запрещенные символы, которые могут привести к ошибке пр изаписи в БД
+            </summary>
+            <param name="author">Автор текста</param>
+            <param name="name">Название текста</param>
+            <returns>True - провекра пройдена, False - не прйдена</returns>
+        </member>
+        <member name="M:TranslatorTool.TextWorker.Create(System.String)">
+            <summary>
+            Получить из текста массив строк (без дополнительной разбивки)
+            </summary>
+            <param name="text">Текст</param>
+            <returns>Список из строк</returns>
+        </member>
+        <member name="M:TranslatorTool.TextWorker.Split(System.String)">
+            <summary>
+            Разбить текст на строки
+            </summary>
+            <param name="text">Текст</param>
+            <returns>Список строк</returns>
+        </member>
+        <member name="M:TranslatorTool.TextWorker.ParseTranslated(System.String)">
+            <summary>
+            Парсинг страницы перевода слова, возвращающий лишь ту ее часть, которая необходима
+            </summary>
+            <param name="text">Страница в html</param>
+            <returns>Нужная часть страницы</returns>
+        </member>
+        <member name="M:TranslatorTool.TextWorker.ParseSearch(System.String)">
+            <summary>
+            Парсинг результатов поиска по текстам (разбивка на список)
+            </summary>
+            <param name="result">Страница в html</param>
+            <returns>Результат</returns>
+        </member>
+        <member name="T:TranslatorTool.App">
+            <summary>
+            Логика взаимодействия для App.xaml
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:TranslatorTool.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:TranslatorTool.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="T:TranslatorTool.MainWindow">
+            <summary>
+            Логика взаимодействия для основного окна
+            </summary>
+            <summary>
+            MainWindow
+            </summary>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.LoadAll">
+            <summary>
+            Загрузка начальной страницы и инициализация элементов
+            </summary>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.autosave_Tick(System.Object,System.EventArgs)">
+            <summary>
+            Автосохранение, если включено
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.NoDB">
+            <summary>
+            Решение проблемы с подключением к БД (отключение некоторых функций)
+            </summary>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.ShowList">
+            <summary>
+            Обновить (загрузить) список переводов
+            </summary>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.ISearchButton(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Обработчик клика по кнопке интернет-поиска
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.search_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Интернет-поиск по нажатию клавиши Enter 
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.search_PreviewMouseUp(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Скрытие Placeholdera для поиска в интернете
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.Search">
+            <summary>
+            Поиск текста в интернете
+            </summary>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.SearchResults_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            Выбор и загрузка текста, найденного в интернете
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.NewFile(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Создание нового файла
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.OpenFile_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Открытие текстового файла
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.ImportNext(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Обработчик нажатия на кнопку импорта
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.EditFileBD(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Открытие файла из БД для редактирования
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.DeleteFromBD_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Удалить из БД
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.GoToSearchPage(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Перейти на страницу поиска
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.ListOfTranslations_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            Отображение информации о файле
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.SearchWord(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Поиск перевода по слову
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.SearchInText(System.String)">
+            <summary>
+            Поиск по текстам переводов
+            </summary>
+            <param name="word">слово</param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.DatePicker_SelectedDateChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            Включение даты в фильтр
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.DatePicker_SelectedDateChanged_1(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            Включение даты в фильтр
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.change_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Изменение текста на Checkbox
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.LanguagesList_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            Включение языка перевода в фильтр
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.ResetFilters(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Сброс фильтров в начальное состояние
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.ApplyFilters(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Применение фильтров и поиск по БД
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.searchDB_GotFocus(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Скрытие Placeholdera
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>      
+        </member>
+        <member name="M:TranslatorTool.MainWindow.TextBox_LostFocus(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Потеря фокуса строкой перевода
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.TextBox_EnMouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Нажатие на строку оригинала
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.TextBox_RuMouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Нажатие на строку перевода
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.EnBox_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            Обратная смена подсвеченной строки для контейнера перевода
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.RuBox_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            Обратная смена подсвеченной строки для контейнера перевода и задание параметров выделения,
+            если текст русский
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.TextBox_EnPreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Переключение между строками оригинала и обработка перевода
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.TextBox_RuPreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Переключение между строками перевода
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.RuBox_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Открытие строки перевода для редактирования
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.EnBox_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Открытие строки оригинала для редактирования
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.sliderselection_ValueChanged(System.Object,System.Windows.RoutedPropertyChangedEventArgs{System.Double})">
+            <summary>
+            Процесс выделения строк
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.S_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Поиск перевода слова
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.searchM_GotFocus(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            СКрытие Placeholdera для строки поиска перевода
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.BeginSelect(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Начало или окончание выделения
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.CopyItems(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Копировать строки
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.PasteItems(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Вставить строки
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.DeleteItem(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Удаление строки
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.commentForm_PreviewKeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Добавление комента
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.PreviewFile(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Переход к предпросмотру и сохранению файла
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.GoHomeButton(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Нажатие кнопки Домой
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.Button_Click_Save(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Сохранение файла в БД
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.Button_Click_Export(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Экспорт файла
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.author_GotFocus(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Скрытие PLaceholdera Автор
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.textname_GotFocus(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Скрытие PLaceholdera Название
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.textnametr_GotFocus(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Скрытие PLaceholdera перевод названия
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.OpenSettings(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Окно настроек
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <!-- Некорректный комментарий в формате XML для члена "M:TranslatorTool.MainWindow.TipMouseEnter(System.Object,System.Windows.Input.MouseEventArgs)" проигнорирован -->
+        <member name="M:TranslatorTool.MainWindow.TipMouseLeave(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Скрытие подсказки
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.ToggleButton_Checked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Сортировка по автору
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.sortname_Checked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Сортировка по названию
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.sortdata_Checked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Сортировка по дате
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TranslatorTool.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:TranslatorTool.Properties.Resources">
+            <summary>
+              Класс ресурса со строгой типизацией для поиска локализованных строк и т.д.
+            </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.ResourceManager">
+            <summary>
+              Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
+            </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.Culture">
+            <summary>
+              Перезаписывает свойство CurrentUICulture текущего потока для всех
+              обращений к ресурсу с помощью этого класса ресурса со строгой типизацией.
+            </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.btn">
+            <summary>
+              Ищет локализованную строку, похожую на Создать или открыть новый файл.
+            </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.btn1">
+            <summary>
+              Ищет локализованную строку, похожую на Вернуться на домашнюю страницу.
+            </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.commentForm">
+            <summary>
+              Ищет локализованную строку, похожую на Добавить комментарий к выделенной строчке.
+            </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.CopyText">
+            <summary>
+              Ищет локализованную строку, похожую на Скопировать выделенные строчки.
+            </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.Delete">
+            <summary>
+              Ищет локализованную строку, похожую на Удалить выделенную строку.
+            </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.EditFile">
+            <summary>
+              Ищет локализованную строку, похожую на Редактировать выбранный файл..
+            </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.EnBox">
+             <summary>
+               Ищет локализованную строку, похожую на Текст оригинала. Для перемещения используйте стрелки &quot;Вверх-Вниз&quot;. Нажатие выделенной строчки 
+            или нажатие Enter открывает ее для редактирования..
+             </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.ExportBtn">
+            <summary>
+              Ищет локализованную строку, похожую на Экспортировать перевод в текстовый файл.
+            </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.GoHome">
+            <summary>
+              Ищет локализованную строку, похожую на Вернуться на домашнюю страницу.
+            </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.GoHome1">
+            <summary>
+              Ищет локализованную строку, похожую на Вернуться на домашнюю страницу.
+            </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.GoHome2">
+            <summary>
+              Ищет локализованную строку, похожую на Вернуться на домашнюю страницу.
+            </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.GoToSearch">
+            <summary>
+              Ищет локализованную строку, похожую на Открыть панель поиска текста в интернете.
+            </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.multitran">
+             <summary>
+               Ищет локализованную строку, похожую на Выделите слово,нажмите горячую клавишу, 
+            и здесь отобразится перевод.
+             </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.OpenFile">
+            <summary>
+              Ищет локализованную строку, похожую на Открыть текстовый файл.
+            </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.PasteText">
+            <summary>
+              Ищет локализованную строку, похожую на Вставить выделенные строчки.
+            </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.RuBox">
+             <summary>
+               Ищет локализованную строку, похожую на Перевод текста. Для перемещения используйте стрелки &quot;Вверх-Вниз&quot;. Нажатие выделенной строчки 
+            или нажатие Enter открывает ее для редактирования..
+             </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.SaveBD">
+            <summary>
+              Ищет локализованную строку, похожую на Сохранить файл в Базе Данных.
+            </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.search">
+            <summary>
+              Ищет локализованную строку, похожую на Найти текст песни (нажмите Enter или кнопку поиска).
+            </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.searchDB">
+             <summary>
+               Ищет локализованную строку, похожую на Введите часть названия и нажмите Enter, либо задайте остальные фильтры
+            и нажмите &quot;Применить&quot;.
+             </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.searchMultitran">
+            <summary>
+              Ищет локализованную строку, похожую на Найти перевод слова (нажмите Enter).
+            </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.SearchResults">
+            <summary>
+              Ищет локализованную строку, похожую на Нажмите на необходимый текст, и он откроется для редактирования..
+            </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.Selection">
+             <summary>
+               Ищет локализованную строку, похожую на Выделение. Выберите строчку, с которой хотите начать выделение, и нажмите эту 
+            кнопку. Используйте вертикальный слайдер для выбора области выделения..
+             </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.SettingsGo">
+            <summary>
+              Ищет локализованную строку, похожую на Открыть настройки.
+            </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.SettingsPanel">
+            <summary>
+              Ищет локализованную строку, похожую на Настройки приложения.
+            </summary>
+        </member>
+        <member name="P:TranslatorTool.Properties.Resources.SplitTheText">
+            <summary>
+              Ищет локализованную строку, похожую на Разбить текст на строки удобной для редактирования длины.
+            </summary>
+        </member>
+    </members>
+</doc>
