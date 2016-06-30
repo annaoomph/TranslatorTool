@@ -1,0 +1,5 @@
+D:\Документы\Translator Tool\Program\TranslatorTool\DBLibrary\bin\Release\DBLibrary.dll
+D:\Документы\Translator Tool\Program\TranslatorTool\DBLibrary\bin\Release\DBLibrary.pdb
+D:\Документы\Translator Tool\Program\TranslatorTool\DBLibrary\obj\Release\DBLibrary.dll
+D:\Документы\Translator Tool\Program\TranslatorTool\DBLibrary\obj\Release\DBLibrary.pdb
+D:\Документы\Translator Tool\Program\TranslatorTool\DBLibrary\obj\Release\DBLibrary.csprojResolveAssemblyReference.cache
