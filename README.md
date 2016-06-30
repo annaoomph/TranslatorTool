@@ -5,7 +5,7 @@ Allows you to edit works easily and to translate words by hotkey (server: multit
 Allows you to export your files;
 Also works with .doc-files and searches text via internet;
 WARNING: The program requires database. The script, which creates database, locates in th repository. Or you can just use installation.
-
+Database SQL
 ____________________________________________________________________________________________________________
 
 Программа, позволяющая переводчикам организовать свою работу.
