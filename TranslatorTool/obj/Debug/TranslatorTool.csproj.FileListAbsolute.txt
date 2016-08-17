@@ -36,3 +36,23 @@ G:\Translation\TranslatorTool\TranslatorTool\obj\Debug\TranslatorTool.Properties
 G:\Translation\TranslatorTool\TranslatorTool\obj\Debug\TranslatorTool.csproj.GenerateResource.Cache
 D:\Документы\Translator Tool\Program\TranslatorTool\TranslatorTool\obj\Debug\SettingsWindow.baml
 D:\Документы\Translator Tool\Program\TranslatorTool\TranslatorTool\obj\Debug\SettingsWindow.g.cs
+D:\TranslatorTool\TranslatorTool\bin\Debug\TranslatorTool.exe.config
+D:\TranslatorTool\TranslatorTool\obj\Debug\TranslatorTool.exe
+D:\TranslatorTool\TranslatorTool\obj\Debug\TranslatorTool.pdb
+D:\TranslatorTool\TranslatorTool\bin\Debug\TranslatorTool.exe
+D:\TranslatorTool\TranslatorTool\bin\Debug\TranslatorTool.pdb
+D:\TranslatorTool\TranslatorTool\bin\Debug\DBLibrary.dll
+D:\TranslatorTool\TranslatorTool\bin\Debug\DBLibrary.pdb
+D:\TranslatorTool\TranslatorTool\obj\Debug\TranslatorTool.csprojResolveAssemblyReference.cache
+D:\TranslatorTool\TranslatorTool\obj\Debug\AppIcons.baml
+D:\TranslatorTool\TranslatorTool\obj\Debug\MainWindow.baml
+D:\TranslatorTool\TranslatorTool\obj\Debug\SettingsWindow.baml
+D:\TranslatorTool\TranslatorTool\obj\Debug\Themes\MoonUITheme.baml
+D:\TranslatorTool\TranslatorTool\obj\Debug\App.baml
+D:\TranslatorTool\TranslatorTool\obj\Debug\MainWindow.g.cs
+D:\TranslatorTool\TranslatorTool\obj\Debug\SettingsWindow.g.cs
+D:\TranslatorTool\TranslatorTool\obj\Debug\App.g.cs
+D:\TranslatorTool\TranslatorTool\obj\Debug\TranslatorTool_MarkupCompile.cache
+D:\TranslatorTool\TranslatorTool\obj\Debug\TranslatorTool.g.resources
+D:\TranslatorTool\TranslatorTool\obj\Debug\TranslatorTool.Properties.Resources.resources
+D:\TranslatorTool\TranslatorTool\obj\Debug\TranslatorTool.csproj.GenerateResource.Cache

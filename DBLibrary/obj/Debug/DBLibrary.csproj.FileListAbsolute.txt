@@ -3,3 +3,8 @@ D:\Документы\Translator Tool\Program\TranslatorTool\DBLibrary\bin\Debug
 D:\Документы\Translator Tool\Program\TranslatorTool\DBLibrary\obj\Debug\DBLibrary.csprojResolveAssemblyReference.cache
 D:\Документы\Translator Tool\Program\TranslatorTool\DBLibrary\obj\Debug\DBLibrary.dll
 D:\Документы\Translator Tool\Program\TranslatorTool\DBLibrary\obj\Debug\DBLibrary.pdb
+D:\TranslatorTool\DBLibrary\bin\Debug\DBLibrary.dll
+D:\TranslatorTool\DBLibrary\bin\Debug\DBLibrary.pdb
+D:\TranslatorTool\DBLibrary\obj\Debug\DBLibrary.csprojResolveAssemblyReference.cache
+D:\TranslatorTool\DBLibrary\obj\Debug\DBLibrary.dll
+D:\TranslatorTool\DBLibrary\obj\Debug\DBLibrary.pdb

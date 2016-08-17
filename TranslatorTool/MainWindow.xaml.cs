@@ -14,6 +14,7 @@ using DBLibrary;
 using Microsoft.Office.Interop;
 using System.Windows.Media.Animation;
 using System.Threading;
+using System.Diagnostics;
 
 namespace TranslatorTool
 {
@@ -129,6 +130,10 @@ namespace TranslatorTool
                 for (int i = 0; i < comments.Count; i++)
                     sr.WriteLine("* " + comments.Values.ElementAt(i));
             }
+           
+            DateTime dt = new DateTime();
+            string time = DateTime.Now.ToLongTimeString();
+            TimeOfAutosave.Content = "Последнее автосохранение: " + time;
         }
         
         /// <summary>
@@ -567,8 +572,9 @@ namespace TranslatorTool
                 selectedid = id;
                 string Info = "Дата создания: " + Result[id]["Date"] + '\n';
                 Info = Info + "Язык: " + Result[id]["Language"] + '\n';               
-                Info = Info + "Файл: " + Result[id]["Path"] + '\n';
+                
                 InfoBox.Text = Info;
+                pathToFile.Text = Result[id]["Path"] + '\n';
             }
         }
 
@@ -1456,6 +1462,25 @@ namespace TranslatorTool
                 Result.Reverse();
             ShowList();
                
+        }
+
+        private void TextBlock_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+           Process.Start("explorer", AutoSavePath);
+        }
+
+        private void pathToFile_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            Process PrFolder = new Process();
+            ProcessStartInfo psi = new ProcessStartInfo();
+            string file = pathToFile.Text;
+            psi.CreateNoWindow = true;
+            psi.WindowStyle = ProcessWindowStyle.Normal;
+            psi.FileName = "explorer";
+            psi.Arguments = @"/n, /select, " + file;
+            PrFolder.StartInfo = psi;
+            PrFolder.Start();
+           
         }    
 
       

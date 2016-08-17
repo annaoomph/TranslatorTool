@@ -86,7 +86,7 @@
             </Grid>
             
             
-            <Grid x:Name="Translation" Visibility="Hidden"      >
+            <Grid x:Name="Translation" Visibility="Hidden"    >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
@@ -113,10 +113,12 @@
                 <TextBox MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" Name="searchMultitran" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Margin="30,20,10,10" Text="Поиск" VerticalAlignment="Top" PreviewKeyDown="S_PreviewKeyDown" Height="20"  GotFocus="searchM_GotFocus"/>
                 <WebBrowser MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" Name="multitran" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" MinWidth="100" MinHeight="100" Margin="25,50,10,10" VerticalAlignment="Stretch" Cursor="None"/>
                 <TextBox MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave" Name="commentForm"  Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" Height="30" MinWidth="100" Margin="10,10,10,5" VerticalAlignment="Top" Style="{DynamicResource new_textbox}" PreviewKeyDown="commentForm_PreviewKeyDown"  />
-                <Button  Name="GoHome1" Grid.Row="2" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Bottom" Height="48" Width="48" Click="GoHomeButton"  MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave">
+                <Label Content="Последнее автосохранение: никогда" Name="TimeOfAutosave" Grid.Row="2" HorizontalAlignment="Left" Margin="8,0,0,0" VerticalAlignment="Top" Foreground="#FF00D84F" ></Label>
+                <TextBlock TextDecorations="Underline" Text="Открыть папку" Grid.Row ="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0" Foreground="#FF00D84F" Cursor="Hand" MouseUp="TextBlock_MouseUp" ></TextBlock>
+                <Button  Name="GoHome1" Grid.Row="2" HorizontalAlignment="Left" Margin="10,25,10,10" VerticalAlignment="Bottom" Height="48" Width="48" Click="GoHomeButton"  MouseEnter="TipMouseEnter" MouseLeave="TipMouseLeave">
                     <ContentControl Width="44" Height="44" Template="{StaticResource HomeIcon}" />
                 </Button>
-                <Button Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Width="38" Height="38" Margin="0,10,10,10"  VerticalAlignment="Bottom" Click="PreviewFile" >
+                <Button Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Width="38" Height="38" Margin="0,25,10,10"  VerticalAlignment="Bottom" Click="PreviewFile" >
                     <ContentControl Width="38" Height="38" Template="{StaticResource NextIcon}" />
                 </Button>
                 <Grid Grid.Column="1" Grid.Row="1">
@@ -142,7 +144,7 @@
             </Grid>
             
             
-            <Grid x:Name="ListTranslate">
+            <Grid x:Name="ListTranslate"    >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
@@ -190,7 +192,8 @@
                 </ToggleButton>
                 <Button Name="reverse" Content="^" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Padding="5" Margin="242,0,0,5" Click="ReverseArray" Background="{x:Null}"/>
                 <Label Name="amount" Content="Файлов: 0" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Margin="0,0,10,5"></Label>
-                <TextBox Name="InfoBox" Margin="10,30,10,10" Grid.Row="1" Grid.Column="0" Text="Информация о файле:" Height="auto"  IsReadOnly="True" Style="{DynamicResource new_textbox}" ScrollViewer.CanContentScroll="True" VerticalScrollBarVisibility="Auto" AllowDrop="False" FontFamily="Century Gothic" VerticalAlignment="Top" Padding="5,5,5,5"/>
+                <TextBlock Name="InfoBox" Margin="10,30,10,10" Grid.Row="1" Grid.Column="0" Text="Информация о файле:" Height="auto"    ScrollViewer.CanContentScroll="True" AllowDrop="False" FontFamily="Century Gothic" VerticalAlignment="Top"  Padding="5,5,5,5" Background="#FFEAEAEA"></TextBlock>
+                <TextBlock Name="pathToFile" TextDecorations="Underline" Grid.Row="1" Grid.Column="0" Margin="10,5,10,0" Background="#FFEAEAEA" Foreground="#FF00D84F" Cursor="Hand" VerticalAlignment="Bottom" Padding="5,0,0,0" MouseUp="pathToFile_MouseUp" ScrollViewer.HorizontalScrollBarVisibility="Visible" TextTrimming="WordEllipsis"/>
                 <Grid Grid.Row="0" Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
