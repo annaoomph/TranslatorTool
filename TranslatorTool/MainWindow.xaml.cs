@@ -772,21 +772,15 @@ namespace TranslatorTool
             string strsub = str.Substring(3);
             int id = Convert.ToInt32(strsub);
             int index = Convert.ToInt32(strsub);
-            if (previewFocus == index) //если он уже выделен, разрешаем редактирование
+            t.Style = (Style)this.Resources["simpleTextBox"];
+            t.Focus();
+            if (previewFocus >= 0) //иначе меняем выделение
             {
-                t.Style = (Style)this.Resources["simpleTextBox"];
-                t.Focus();
+                TextBox tb = (TextBox)EnBox.Items[previewFocus];
+                tb.Style = (Style)this.Resources["flatTextBox"];
             }
-            else
-            {
-                if (previewFocus >= 0) //иначе меняем выделение
-                {
-                    TextBox tb = (TextBox)EnBox.Items[previewFocus];
-                    tb.Style = (Style)this.Resources["flatTextBox"];
-                }
-                EnBox.SelectedIndex = Convert.ToInt32(index);
-                previewFocus = index;
-            }
+            EnBox.SelectedIndex = Convert.ToInt32(index);
+            previewFocus = index;            
         }
 
         /// <summary>
@@ -801,22 +795,17 @@ namespace TranslatorTool
             string strsub = str.Substring(3);
 
             int index = Convert.ToInt32(strsub);
-            if (previewFocus == index)
+           
+            t.Style = (Style)this.Resources["simpleTextBox"];
+            t.Focus();
+         
+            if (previewFocus >= 0)
             {
-                t.Style = (Style)this.Resources["simpleTextBox"];
-                t.Focus();
+                TextBox tb = (TextBox)RuBox.Items[previewFocus];
+                tb.Style = (Style)this.Resources["flatTextBox"];
             }
-            else
-            {
-                if (previewFocus >= 0)
-                {
-                    TextBox tb = (TextBox)RuBox.Items[previewFocus];
-                    tb.Style = (Style)this.Resources["flatTextBox"];
-                }
-                RuBox.SelectedIndex = Convert.ToInt32(index);
-                previewFocus = index;
-            }
-
+            RuBox.SelectedIndex = Convert.ToInt32(index);
+            previewFocus = index;
         }
 
         /// <summary>
